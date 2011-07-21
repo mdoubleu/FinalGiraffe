@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="org.Giraffe"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="8" />
+    <application android:icon="@drawable/icon" android:theme="@android:style/Theme.NoTitleBar" android:label="@string/app_name">
+             
+             <activity android:name=".MainMenu"
+                  android:label="@string/app_name"
+                  android:screenOrientation="landscape" 
+                   android:configChanges="keyboardHidden|orientation"
+                   android:launchMode="singleTask"
+                  >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+  	    
+		<activity android:name=".OptionsMenu"
+			android:screenOrientation="landscape" >
+			
+		</activity>
+		<activity android:name=".Credits"
+			android:screenOrientation="landscape" >
+			
+		</activity>
+		<activity android:name=".Extras"
+			android:screenOrientation="landscape" >
+			
+		</activity>
+		<activity android:name=".LevelSelect"
+			android:screenOrientation="landscape" >
+			
+		</activity>
+		<activity android:name=".Start"
+			android:screenOrientation="landscape" >
+			
+		</activity>
+		<activity android:name="CutSceenActivity"
+			android:screenOrientation="landscape" >
+			
+		</activity>
+		  <activity android:name=".GameOver"
+			android:screenOrientation="landscape" >
+			
+		</activity>
+			<activity android:name=".WinScreen"
+			android:screenOrientation="landscape" >
+			
+		</activity>
+		 <activity android:name=".GameCall"
+		 android:configChanges="keyboardHidden|orientation"
+		 android:screenOrientation="landscape" 
+                  
+                  android:label="@string/app_name">
+               </activity>   
+	
+
+    </application>
+     
+</manifest>

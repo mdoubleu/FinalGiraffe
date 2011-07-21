@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  
+  >
+  <CheckBoxPreference 
+  	android:key="music"
+  	android:title="Music"
+  	android:summary="Play background music"
+  	android:defaultValue="true"
+  	/>
+  <CheckBoxPreference
+  	android:key="sounds"
+  	android:title="Sounds"
+  	android:summary="Play sound effects"
+  	android:defaultValue="true"
+  />
+   <EditTextPreference
+   android:title="Level Select"
+   android:name="levelselect" 
+   android:key="levelselect" 
+   android:defaultValue="1"  
+   
+   >
+   </EditTextPreference>
+   <EditTextPreference
+   android:title="Highscore"
+   android:name="highscore" 
+   android:key="highscore" 
+   android:defaultValue="300"  
+   
+   >
+   </EditTextPreference>
+</PreferenceScreen>

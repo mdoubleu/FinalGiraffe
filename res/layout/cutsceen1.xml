@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<VideoView android:id="@+id/videoView1"
+		android:layout_height="fill_parent" android:layout_width="fill_parent" />
+
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/ControlLayout"
+		android:layout_gravity="bottom|center_horizontal">
+		<ImageView android:id="@+id/replaybutton" android:src="@drawable/replaybutton"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:clickable="true" />
+
+		<ImageView android:id="@+id/skipbutton" android:src="@drawable/skipbutton"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:clickable="true" />
+
+	</LinearLayout>
+</FrameLayout>

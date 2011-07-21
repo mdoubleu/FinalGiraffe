@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Giraffe!</string>
+    <string name="app_name">Giraffe Adventure</string>
+    
+    <string name= "play_label">Play</string>
+    <string name= "level_select_label">Level Select</string>
+    <string name= "how_to_play_label">How to Play</string>
+    <string name= "about_label">About</string>
+    <string name= "settings_label">Settings</string>
+    <string name="main_title"> Giraffe Adventure</string>
+    <string name="about_title">About Giraffe Adventure</string>
+    <string name="HTP_title">How to Play</string>
+	<string name="about_text">
+	Jeremy Croll. 
+	</string>
+	<string name="Start">Start</string>
+	<string name= "Extras">Extras</string>
+	<string name= "Options">About</string>
+    <string name= "left_label">Left</string>
+    <string name= "right_label">Right</string>
+     <string name= "empty">Null</string>
+</resources>

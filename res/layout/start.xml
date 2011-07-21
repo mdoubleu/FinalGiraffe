@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+		android:layout_width="fill_parent"
+  		android:layout_height="fill_parent" 
+  		xmlns:android="http://schemas.android.com/apk/res/android">
+	<ImageView 
+          android:id="@+id/mainMenuBackground"
+          android:src="@drawable/title_background"
+          android:adjustViewBounds="true"
+          android:gravity="center_vertical"
+          android:scaleType="fitXY"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"/>
+
+	
+	<ImageView 
+	      android:id="@+id/mainMenuTitle"
+	      android:src="@drawable/giraffelogo"
+	      android:adjustViewBounds="true"
+	      android:layout_width="356dp" 
+	      android:layout_height="123dp" 
+	      android:layout_gravity="center_horizontal" 
+	      android:layout_marginTop="20dp"/>
+	      
+	   <LinearLayout
+	     	android:layout_width="fill_parent"
+			android:layout_height="fill_parent" 
+			xmlns:android="http://schemas.android.com/apk/res/android"
+	     	android:orientation="vertical"
+	     	android:gravity="bottom"
+	     	android:id="@+id/mainSectionMenu">
+	    
+	    
+	    <ImageView 
+	        android:id="@+id/continuebutton"
+	        android:src="@drawable/continuebutton"
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content" 
+	        android:layout_gravity="center_horizontal"
+	        android:clickable="true" />
+	        <ImageView 
+		    android:id="@+id/optionButton"
+		    android:src="@drawable/invisble"
+		    android:layout_width="wrap_content" 
+		    android:layout_height="20dp" 
+		    android:layout_gravity="center_horizontal"
+		    android:clickable="false" />
+	
+	    <ImageView 
+	        android:id="@+id/levelselect"
+	        android:src="@drawable/levelselect"
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content" 
+	        android:layout_gravity="center_horizontal"
+	       	
+			android:clickable="true" />
+	        
+	        
+	        
+		<ImageView 
+		    android:id="@+id/optionButton"
+		    android:src="@drawable/invisble"
+		    android:layout_width="wrap_content" 
+		    android:layout_height="wrap_content" 
+		    android:layout_gravity="center_horizontal"
+		    android:clickable="false" />
+	     
+		
+	 
+		
+	</LinearLayout>
+
+	<ImageView
+       	android:id="@+id/extrasNew"
+       	android:src="@drawable/ui_new" 
+       	android:layout_height="wrap_content" 
+       	android:layout_width="wrap_content" 
+       	android:paddingLeft="280dp"
+       	android:paddingTop="160dp"
+       	android:visibility="invisible"/>
+	
+</FrameLayout> 
