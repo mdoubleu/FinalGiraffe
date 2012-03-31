@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 public class Giraffe extends Mechanics{
 
@@ -137,29 +138,34 @@ public class Giraffe extends Mechanics{
 		
 			myState = gState.ATTACKING;
 		}
-	public void setToJump() {myState = gState.JUMPING;}
+	public void setToJump() {myState = gState.JUMPING;  }
 	public void setToPrime () {
 		 
 			myState = gState.PRIMED;
 		}
-	public void setToNormal () {myState = gState.NORMAL;}
+	public void setToNormal () {myState = gState.NORMAL; }
 	public void setTime () {primeTime = System.currentTimeMillis()+0;}
 	public void setCooldownTime() {cooldownTime = System.currentTimeMillis()+0;}
 	public void updateTime() {difference=System.currentTimeMillis()-primeTime;}
 	public String toString(){return "giraffe";}
 	
 	public boolean fall(Enemy enemyLandOn){
+		
+		
+		//in order to understand this problem we most first look at the jump method....the only problem is that I cannot find the Jump method....therefore I cannot understand how this is coded.
 		if(getHitBox().get(1).getX()>enemyLandOn.getHitBox().get(0).getX2() && !getJump()){
 			doubleJumpCount=0;
-			coordinate.setY(jump(getY(),stopJumpCoordinate, -1f, -.02f, jumpTime));
+			coordinate.setY(jump(getY(),stopJumpCoordinate, -1f, -.02f, jumpTime ));
 			hitBox.get(0).setY(jump(hitBox.get(0).getY(), headStopCoordinate, -1f, -.02f, jumpTime));
-			hitBox.get(1).setY(jump(hitBox.get(1).getY(), bodyStopCoordinate, -1f, -.02f, jumpTime));
-			hitBox.get(2).setY(jump(hitBox.get(2).getY(), killStopCoordinate, -1f, -.02f, jumpTime));
+			hitBox.get(1).setY(jump(hitBox.get(1).getY(), bodyStopCoordinate, -1f, -.02f, jumpTime ));
+			hitBox.get(2).setY(jump(hitBox.get(2).getY(), killStopCoordinate, -1f, -.02f, jumpTime ));
+			
 			if(getY()==stopJumpCoordinate){
 				doubleJumpCount=0;
 				hitBox.get(0).setY(headStopCoordinate);
 				hitBox.get(1).setY(bodyStopCoordinate);
 				hitBox.get(2).setY(killStopCoordinate);
+				
 				return false;
 			}
 		}
@@ -170,11 +176,16 @@ public class Giraffe extends Mechanics{
 			delayCollideOneSecond(delayCollideTime);
 		}
 		updateTime();
+		
+		//if you can jump!
 		if(getJump()){
 			int holdYJump=jump(coordinate.getY(), stopJumpCoordinate, 12f, -.02f, jumpTime);
+			
+			//if it has landed
 			if(holdYJump==stopJumpCoordinate){
 				setJump(false);
 				doubleJumpCount=0;
+				
 				hitBox.get(0).setY(headStopCoordinate);
 				hitBox.get(1).setY(bodyStopCoordinate);
 				hitBox.get(2).setY(killStopCoordinate);
@@ -185,16 +196,19 @@ public class Giraffe extends Mechanics{
 			hitBox.get(1).setY(jump(hitBox.get(1).getY(), bodyStopCoordinate, 12f, -.02f, jumpTime));
 			hitBox.get(2).setY(jump(hitBox.get(2).getY(), killStopCoordinate, 12f, -.02f, jumpTime));
 			
+			
+			Log.d("JumpTimer" , "JumpTimer" + GameCall.jumptimer);
 		}
+	
 		switch(myState) {
 		case ATTACKING:
 			setImageToDraw(states.get(2));
-			hitBox.get(0).collide(false);
+			hitBox.get(0).setY(-100);
 				hitBox.get(2).collide(true);
 				if (difference>=400){
-					hitBox.get(0).collide(true);
+					
 					hitBox.get(2).collide(false);
-					hitBox.get(0).setY(headStopCoordinate);
+					//hitBox.get(0).setY(headStopCoordinate);
 					//autoAttack=false;
 					myState=gState.NORMAL;
 					setCooldownTime();
@@ -208,8 +222,14 @@ public class Giraffe extends Mechanics{
 			}
 			break;
 		case NORMAL:
+			hitBox.get(0).setX(hitBox.get(1).getX()+50);
+			hitBox.get(0).setY(hitBox.get(1).getY()-70);
+			
+			
 			if (System.currentTimeMillis() - cooldownTime > 300) {
 				setCooldown(false);
+				
+				//places the hitbox in the correct position after attack
 			}
 			
 			move(System.currentTimeMillis());

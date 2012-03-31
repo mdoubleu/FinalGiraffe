@@ -20,7 +20,10 @@ public class GameOver extends Activity implements OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		Music.stop(this);
+        
+        //GameCall.mPaused=false;
+		
+        Music.stop(this);
 
         setContentView(R.layout.gameover);
   

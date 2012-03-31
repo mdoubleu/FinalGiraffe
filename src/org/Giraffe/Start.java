@@ -46,7 +46,7 @@ public class Start extends Activity implements OnClickListener
 			case R.id.continuebutton:
 				
 				Music.stop(this);
-				Intent x=new Intent(this, CutSceenActivity.class);
+				Intent x=new Intent(this, CutSceneActivity.class);
 				startActivity(x);
 				
 

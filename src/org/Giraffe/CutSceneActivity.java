@@ -29,7 +29,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class CutSceenActivity extends Activity implements OnClickListener
+public class CutSceneActivity extends Activity implements OnClickListener
 {
 	private View replay;
 	private View skip;
@@ -37,13 +37,14 @@ public class CutSceenActivity extends Activity implements OnClickListener
 	long startTime;
 	Context context;
 	Intent o;
-	
+    VideoView video;
+  
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        
 	        
-	        setContentView(R.layout.cutsceen1);
+	        setContentView(R.layout.cutscene1);
 	        context=this;
 	        replay= findViewById(R.id.replaybutton);
 	        replay.setOnClickListener(this);
@@ -52,7 +53,7 @@ public class CutSceenActivity extends Activity implements OnClickListener
 	        //Fill view from resource
 			o=new Intent(this, GameCall.class);
 			Uri videoPath=null;
-	        VideoView video = (VideoView) findViewById(R.id.videoView1);
+	        video = (VideoView) findViewById(R.id.videoView1);
 	        //video.setVideoPath("/raw/cutscene1.mp4");
 	        if(Integer.parseInt(OptionsMenu.getLevel(context))==1)
 	        {
@@ -66,6 +67,7 @@ public class CutSceenActivity extends Activity implements OnClickListener
 	       video.requestFocus();
 	       //video.setOnCompletionListener(null); 
 	       video.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){
+	    	   
 		@Override
 		public void onCompletion(MediaPlayer mp) {
 			// TODO Auto-generated method stub
@@ -75,7 +77,8 @@ public class CutSceenActivity extends Activity implements OnClickListener
 			
 		} });
 	       video.start();
-	      
+           video.requestFocus();
+
 	        //Music.create(this,R.raw.cutscene1);
 	        //mediaPlayer.start(); // no need to call prepare(); create() does that for you
 	       
@@ -95,7 +98,7 @@ public class CutSceenActivity extends Activity implements OnClickListener
 		{
 		case R.id.replaybutton:
 			finish();
-			Intent x=new Intent(this, CutSceenActivity.class);
+			Intent x=new Intent(this, CutSceneActivity.class);
 			startActivity(x);
 			break;
 		case R.id.skipbutton:
@@ -103,14 +106,19 @@ public class CutSceenActivity extends Activity implements OnClickListener
 			Intent z=new Intent(this, GameCall.class);
 			startActivity(z);
 			break;
-		}
-		
-
-			 
-		
-			
+		}	
+	}
+	@Override
+	public void onPause() {
+		super.onPause();
+		video.pause();
+	}
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		video.resume();
 	}
 
-	
 	
 }

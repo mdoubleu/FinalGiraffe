@@ -6,7 +6,9 @@
 
 	import android.app.Activity;
 	import android.media.AudioManager;
+import android.net.Uri;
 	import android.os.Bundle;
+import android.content.Context;
 	import android.content.Intent;
 	import android.util.Log;
 	import android.view.View;
@@ -18,13 +20,26 @@ import android.view.View.OnClickListener;
 
 	public class WinScreen extends Activity implements OnClickListener {	
 		 /** Called when the activity is first created. */
+		Context context;
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
+	        //GameCall.mPaused=false;
+	        context=this;
+	        
 			Music.stop(this);
-
-	        setContentView(R.layout.win);
-	  
+			//if you beat level 1 set it to the win layout.
+			if(Integer.parseInt(OptionsMenu.getLevel(context))==1)
+	        {
+				   setContentView(R.layout.win);
+	        }
+	        if(Integer.parseInt(OptionsMenu.getLevel(context))==2)
+	        {
+	        	setContentView(R.layout.endscreen);
+	        }
+	     
+	        //if you beat level 2 set it to the you beat the game layout.
+	        
 	        //View settingsButton = findViewById(R.id.settings_button);
 	        //settingsButton.setOnClickListener(this);
 	        View mContinueButton = findViewById(R.id.continueButton);
@@ -43,7 +58,7 @@ import android.view.View.OnClickListener;
 					GameState.nextLevel(v.getContext());
 					this.finish();
 			    	Music.stop(this);
-					Intent x=new Intent(this, CutSceenActivity.class);
+					Intent x=new Intent(this, CutSceneActivity.class);
 					startActivity(x);
 
 					break;

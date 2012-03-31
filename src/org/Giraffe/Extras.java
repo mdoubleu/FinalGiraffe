@@ -42,7 +42,7 @@ public class Extras extends Activity implements OnClickListener
 			case R.id.levelselect:
 				
 				Music.stop(this);
-				Intent x=new Intent(this, CutSceenActivity.class);
+				Intent x=new Intent(this, CutSceneActivity.class);
 				startActivity(x);
 				Log.d("Far", "Do i get this far?");
 

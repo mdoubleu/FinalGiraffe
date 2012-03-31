@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.WindowManager;
@@ -22,12 +23,26 @@ public class GameCall extends Activity{
 	GameController controller;
 	GameModel model;
 	Context context;
-	private static boolean mPaused=false;
+	static boolean mPaused=false;
 	static final int DIALOG_PAUSED_ID = 0;
 	static final int DIALOG_GAMEOVER_ID = 1;
 
+	//Used for the pause timers
+	public static long pressedBack;
+	public static long pressedResume;
+	public static long timePaused;
+	
+	//Used for pausing the jumps
+	public static long pressedJump;
+	public static long releasedJump;
+	public static long jumptimer;
+	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        GameCall.jumptimer = 0;
+		GameCall.pressedJump = 0;
+		GameCall.releasedJump = 0;
         
         getWindow().setFormat(PixelFormat.RGBA_8888);
         setContentView(R.layout.game);
@@ -53,30 +68,82 @@ public class GameCall extends Activity{
     //overrides the back button
     @Override
     public void onBackPressed() {
-    	Music.stop(context);
-        GameCall.this.finish();
-    	// do something on back.
-    	//setContentView(R.layout.pausescreen);
     	
-    	//gameThread.setRunning(false);
-    	//gameThread.run();
-    	//mPaused=true;
-    	//showDialog(0);
-    	//gameThread.suspend();
-    return;
+    	//if(Music.)
+    	Music.pause(context);
+    	
+    	if(mPaused==true)
+    	{
+
+    	}
+    	else
+    	{
+	    	//Music.stop(context);
+	        //GameCall.this.finish();
+	    	// do something on back.
+	    	//setContentView(R.layout.pausescreen);
+	    	
+	    	//gameThread.setRunning(false);
+	    	//gameThread.run();
+	        mPaused=true;
+	        pressedBack = System.currentTimeMillis();
+	        pressedJump = System.currentTimeMillis();
+    	
+    	}
+    	if(GameModel.levelOver == false)
+    	{
+    		showDialog(0);
+    	}
+	    	//gameThread.suspend();
+    
     }
-    @Override
+    private void showDialogBox(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
     protected void onPause() {
         super.onPause();
-        //mPaused = true;
-    }
-
+        
+        //Smelly coding results in issues with losing/winning game
+       // onBackPressed();
+        //mPaused=true;
+        //pressedBack = System.currentTimeMillis();
+        
+        onBackPressed();
+	}
     @Override
     protected void onResume() {
         super.onResume();
-        //mPaused = false;
+        
+        GameModel.levelOver = false;
+        GameModel.levelLose = false;
+       
+        
     }
- 
+    
+    @Override
+	public void onDestroy() {
+    	super.onDestroy();
+    	mPaused = false;
+    	//sMusic.start(context);
+    	pressedBack=0;
+    	pressedResume=0;
+    	timePaused=0;
+     
+    }
+    
+    @Override
+	public void finish() {
+    	super.finish();
+    	//mPaused = false;
+    	//pressedBack=0;
+    	//pressedResume=0;
+    	//timePaused=0;
+    	//sMusic.start(context);
+     
+    }
+    
     
     
     
@@ -91,22 +158,33 @@ public class GameCall extends Activity{
             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                 	mPaused=false;
-                	Music.stop(context);
+                	//Music.stop(context);
                     GameCall.this.finish();
                }
            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                public void onClick(DialogInterface dialog, int id) {
-            	   mPaused=false;
-            	   dialog.dismiss();
             	   
+            	   mPaused=false;
+            	  // Music.create(context, R.raw.newcentralpark);
+            	   Music.start(context);
+            	   pressedResume = System.currentTimeMillis();
+            	   timePaused += pressedResume - pressedBack;
+            	   
+            	   releasedJump = System.currentTimeMillis();
+            	   jumptimer = releasedJump - pressedJump;
+            	   
+            	   dialog.dismiss();
+            	  
               }
           })
             .create();
+			dialog.setCancelable(false);
 		} 
 		
 		else 
 		{
 			dialog = super.onCreateDialog(id);
+			dialog.setCancelable(false);
 		}
 		return dialog;
     }
@@ -115,5 +193,5 @@ public class GameCall extends Activity{
     {
     	return mPaused;
     }
-
+    
 }

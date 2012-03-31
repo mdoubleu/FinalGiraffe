@@ -21,7 +21,8 @@ public class GameThread extends Thread{
 		while(running){
 			if(GameCall.getmPaused()==true)
         	{
-        		
+				
+        		//Log.d("Gandalf", "YOU SHALL NOT PASS!!!!");
         	}
 			else{
 					synchronized(view){
@@ -29,7 +30,7 @@ public class GameThread extends Thread{
 					}
 				 if (!model.levelOver){
 					synchronized(model){
-					     model.updateLevel(System.currentTimeMillis());
+					     model.updateLevel(System.currentTimeMillis()-GameCall.timePaused);
 					}
 				 }else{
 					 synchronized(model){

@@ -38,7 +38,7 @@
 			android:screenOrientation="landscape" >
 			
 		</activity>
-		<activity android:name="CutSceenActivity"
+		<activity android:name="CutSceneActivity"
 			android:screenOrientation="landscape" >
 			
 		</activity>

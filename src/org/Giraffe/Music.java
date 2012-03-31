@@ -29,6 +29,7 @@ public class Music {
 			mp.setLooping(true);
 		}
 	}
+	
 	public static void stop(Context context)
 	{
 		if(mp != null)
@@ -52,5 +53,6 @@ public class Music {
 		
 		
 	}
+
 	
 }

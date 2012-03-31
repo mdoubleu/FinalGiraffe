@@ -13,13 +13,14 @@ public class GameModel {
 	Context context;
 	Giraffe jeremy;
 	
-	public boolean levelOver=false;
-	private boolean levelLose=false;
+	static boolean levelOver=false;
+	static boolean levelLose=false;
 	private boolean checkFall=false;
 	private boolean laugh=false;
 	private Enemy enemyLandOn;
 	private long lastUpdate;
 	private final static float DURATION = 250;
+	
 
 	
 	private int score;
@@ -86,18 +87,17 @@ public class GameModel {
 			}
 		}
 		lastUpdate = now;
-	}
-	
+}
 	public void gameOver(){
 		if(levelLose){
-			levelOver=false;
+			//levelOver=false;
 			((Activity) context).finish();
 			Intent gameOverScreen = new Intent(context, GameOver.class);
 			gameOverScreen.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			context.startActivity(gameOverScreen);
 		}else{
-			Music.stop(context);
-			levelOver=false;
+			//Music.stop(context);
+			//levelOver=false;
 			((Activity) context).finish();
 			Intent winScreen = new Intent(context, WinScreen.class);
 			winScreen.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -117,6 +117,14 @@ public class GameModel {
 			if(enemy.toString().equals("kapow") && enemy.getX2()<0){
 				levelOver=true;
 			}
+			//When the Giraffe hits the ground the jump variables get reset
+			if(jeremy.getY() == 260)
+			{
+				GameCall.jumptimer = 0;
+				GameCall.pressedJump = 0;
+				GameCall.releasedJump = 0;
+			}
+			
 			if(enemy.getX()<810 && !(enemy.getX2()<-5)){
 				if(enemy.canCollide()&&jeremy.canCollide()){
 				if(jeremy.getHitBox().get(1).landsOn(enemy.getHitBox().get(0)) && enemy.canLandOn()){
@@ -124,6 +132,11 @@ public class GameModel {
 					jeremy.jumpTime=System.currentTimeMillis()+0;
 					jeremy.doubleJumpCount=0;
 					jeremy.setJump(false);
+					
+					GameCall.jumptimer = 0;
+					GameCall.pressedJump = 0;
+					GameCall.releasedJump = 0;
+					
 					checkFall=true;
 				}
 				else if((enemy.hitBox.get(0).collidesWith(jeremy.getHitBox().get(0)) && jeremy.getHitBox().get(0).collide)

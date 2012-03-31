@@ -64,7 +64,7 @@ public class LevelSelect extends Activity implements OnClickListener
 				//startActivity(x);
 				Log.d("Far", "Do i get this far?");
 				OptionsMenu.setLevel(v.getContext(),1+"");
-				Intent x=new Intent(this, CutSceenActivity.class);
+				Intent x=new Intent(this, CutSceneActivity.class);
 				startActivity(x);
 
 				break;
@@ -75,7 +75,7 @@ public class LevelSelect extends Activity implements OnClickListener
 		        //startActivity(f);
 				Music.stop(this);
 				OptionsMenu.setLevel(v.getContext(),2+"");
-				Intent f=new Intent(this, CutSceenActivity.class);
+				Intent f=new Intent(this, CutSceneActivity.class);
 				startActivity(f);
 		        break;
 			

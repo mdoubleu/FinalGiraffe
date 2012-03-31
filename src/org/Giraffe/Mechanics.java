@@ -72,9 +72,9 @@ public abstract class Mechanics {
 	
 	public int jump(int y, int yStop, float velocity, float acceleration,  long staticTime)
 	{
-		long timeMil=System.currentTimeMillis()-staticTime;
-		
+		long timeMil=System.currentTimeMillis()-staticTime - GameCall.jumptimer;
 		gVel=(int)(velocity+(acceleration*timeMil));
+		
 		if(y>=yStop+1){
 			
 			return yStop;

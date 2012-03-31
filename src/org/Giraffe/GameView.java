@@ -115,16 +115,17 @@ public class GameView implements Callback{
 			canvas.drawBitmap(health, width-(40 * (h+1)), (30), null);
 				
 		}
-		/*
-		canvas.drawRect(model.getGiraffe().getHitBox().get(0).getX(),model.getGiraffe().getHitBox().get(0).getY(),
+		//shows hitboxes for Giraffe
+		/*canvas.drawRect(model.getGiraffe().getHitBox().get(0).getX(),model.getGiraffe().getHitBox().get(0).getY(),
 				model.getGiraffe().getHitBox().get(0).getX2(),model.getGiraffe().getHitBox().get(0).getY2(), v);
 	
 		canvas.drawRect(model.getGiraffe().getHitBox().get(1).getX(),model.getGiraffe().getHitBox().get(1).getY(),
 				model.getGiraffe().getHitBox().get(1).getX2(),model.getGiraffe().getHitBox().get(1).getY2(), v);
 		
 		canvas.drawRect(model.getGiraffe().getHitBox().get(2).getX(),model.getGiraffe().getHitBox().get(2).getY(),
-				model.getGiraffe().getHitBox().get(2).getX2(),model.getGiraffe().getHitBox().get(2).getY2(), v);
-	*/
+				model.getGiraffe().getHitBox().get(2).getX2(),model.getGiraffe().getHitBox().get(2).getY2(), v);  */
+				
+	
 	}
 	
 	
